@@ -1,0 +1,33 @@
+<body>
+    <div id="container">
+
+    </div>    
+</body>
+
+<style>
+    .book{
+        border: 5px black solid;
+        margin: 10px;
+        padding: 10px;
+    }
+</style>
+
+<script>
+
+    async function main(){
+        let request = await fetch("http://localhost:3000/books", {method: "GET"});
+        let data = await request.json()
+        
+        for(let i=0;i<data.length;i++){
+            document.getElementById("container").innerHTML+=`
+            <div class="book">
+                <div>${data[i].title}</div>
+                <div>${data[i].author}</div>
+                <div>${data[i].genre}</div>
+    </div>
+            `
+        }
+    }
+
+    main()
+</script>
